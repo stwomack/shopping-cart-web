@@ -1,11 +1,12 @@
 package com.demo.shopping_cart_service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class ShoppingCartController {
 
     @Autowired
@@ -13,16 +14,23 @@ public class ShoppingCartController {
 
     @GetMapping("/")
     public String hello() {
-        return "This Spring Boot app is generating ShoppingCarts and storing them in Redis";
+        return "index"; // Return the name of the HTML template
     }
 
     @GetMapping("/shoppingcarts")
-    public Iterable<ShoppingCart> getShoppingCarts() {
-        return shoppingCartService.getAllCarts();
+    public String getAllCarts(Model model) {
+        model.addAttribute("carts", shoppingCartService.getAllCarts());
+        return "shoppingcarts"; // Return the name of the HTML template
     }
 
-    @GetMapping("/shoppingcart")
-    public ShoppingCart getShoppingCarts(@PathVariable String userId) {
-        return shoppingCartService.getCart(userId);
+    @GetMapping("/shoppingcart/{userId}")
+    public String getCart(@PathVariable String userId, Model model) {
+        ShoppingCart cart = shoppingCartService.getCart(userId);
+        if (cart != null) {
+            model.addAttribute("cart", cart);
+            return "shoppingcart"; // Return the name of the HTML template
+        } else {
+            return "cartNotFound"; // Return the name of the HTML template
+        }
     }
 }
