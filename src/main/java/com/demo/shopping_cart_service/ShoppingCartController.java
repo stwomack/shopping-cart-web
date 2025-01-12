@@ -14,13 +14,13 @@ public class ShoppingCartController {
 
     @GetMapping("/")
     public String hello() {
-        return "index"; // Return the name of the HTML template
+        return "index.html"; // Return the name of the HTML template
     }
 
     @GetMapping("/shoppingcarts")
     public String getAllCarts(Model model) {
         model.addAttribute("carts", shoppingCartService.getAllCarts());
-        return "shoppingcarts"; // Return the name of the HTML template
+        return "shoppingcarts.html"; // Return the name of the HTML template
     }
 
     @GetMapping("/shoppingcart/{userId}")
@@ -28,9 +28,9 @@ public class ShoppingCartController {
         ShoppingCart cart = shoppingCartService.getCart(userId);
         if (cart != null) {
             model.addAttribute("cart", cart);
-            return "shoppingcart"; // Return the name of the HTML template
+            return "shoppingcart.html"; // Return the name of the HTML template
         } else {
-            return "cartNotFound"; // Return the name of the HTML template
+            return "cartNotFound.html"; // Return the name of the HTML template
         }
     }
 }
