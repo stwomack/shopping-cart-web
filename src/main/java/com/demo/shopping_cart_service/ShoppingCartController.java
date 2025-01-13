@@ -1,5 +1,6 @@
 package com.demo.shopping_cart_service;
 
+import com.demo.shopping_cart_service.domain.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
