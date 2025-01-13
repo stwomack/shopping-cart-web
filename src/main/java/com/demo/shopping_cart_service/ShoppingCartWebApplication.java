@@ -6,10 +6,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class ShoppingCartServiceApplication {
+public class ShoppingCartWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShoppingCartServiceApplication.class, args);
+		SpringApplication.run(ShoppingCartWebApplication.class, args);
 	}
 
 }
